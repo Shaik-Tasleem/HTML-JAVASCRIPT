@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script type="text/javascript">
+        function AddClick(){
+        document.getElementById("detailsContainer").style.display="block";
+        document.getElementById("btnRegister").style.display="none";
+        document.getElementById("lblName").innerHTML=document.getElementById("txtName").value;
+        document.getElementById("lblPrice").innerHTML=document.getElementById("txtPrice").value;
+        document.getElementById("lblCity").innerHTML=document.getElementById("lstCities").value;
+        stockCheckBox=document.getElementById("chkStock");
+        stockStatus="";
+        if(stockCheckBox.checked){
+            stockStatus="available";
+        }
+        else{
+            stockStatus="unavilable";
+        }
+        document.getElementById("lblStock").innerHTML=stockStatus;
+    }
+    function EditClick(){
+        document.getElementById("btnAdd").innerHTML = "Save Product";
+        document.getElementById("btnAdd").className = "btn btn-success w-100";
+    }
+    </script>
+</head>
+<body class="container-fluid">
+   <button class="btn btn-primary mt-3" id="btnRegister"data-bs-toggle="modal" data-bs-target="#addContainer">Add Product</button>
+   <div class="modal fade" id="addContainer">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 >Add your product</h1>
+                <button class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <dl>
+                    <dt>Name</dt>
+                    <dd><input class="form-control" id="txtName" type="text"></dd>
+                    <dt>Price</dt>
+                    <dd><input type="number" class="form-control" id="txtPrice"></dd>
+                    <dt>City</dt>
+                    <dd>
+                        <select id="lstCities" class="form-select">
+                            <option>Select City</option>
+                            <option>HYD</option>
+                            <option>delhi</option>
+                        </select>
+                    </dd>
+                    <dt>Stock</dt>
+                        <dd class="form-switch">
+                            <input type="checkbox" class="form-check-input" id="chkStock"><label>Available</label>
+                        </dd>
+                </dl>
+            </div>
+            <div class="modal-footer">
+                    <button class="btn btn-primary w-100" id="btnAdd"  data-bs-dismiss="modal" onclick="AddClick()">Add</button>
+            </div>
+        </div>
+    </div>
+   </div>
+   <div id="detailsContainer" style="display: none;">
+    <h3>Product Details</h3>
+    <dl class="row">
+        <dt class="col-2">Name</dt>
+        <dd class="col-10"id="lblName"></dd>
+        <dt class="col-2">Price</dt>
+        <dd class="col-10" id="lblPrice"></dd>
+        <dt class="col-2">City</dt>
+        <dd class="col-10" id="lblCity"></dd>
+        <dt class="col-2">Stock</dt>
+        <dd class="col-10" id="lblStock"></dd>
+    </dl>
+            <button class="btn btn-warning" data-bs-target="#addContainer" data-bs-toggle="modal"  onclick="EditClick()"><span class="bi bi-pen-fill"></span>Edit</button>
+   </div>
+</body>
+</html>

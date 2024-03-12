@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .rating{
+            display: grid;
+            grid-template-columns: 2fr 10fr;
+        }
+        .rate{
+            font-size: 40px;
+        }
+        ul{
+            list-style: none;
+            font-size: 20px;
+        }
+        li{
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="rating">
+        <div >
+            <span class="rate">4.6<span class="bi bi-star-fill"></span></span>
+            <div>5500 reviews& 5000ratings</div>
+        </div>
+        <div>
+            <ul>
+                <li>
+                    <span>5<span class="bi bi-star-fill"></span>
+                    <meter min="2" max="5" value="5"></meter>
+                </li>
+                <li>
+                    <span>4<span class="bi bi-star-fill"></span>
+                    <meter min="1" max="10" value="7"></meter>
+                </li>
+                <li>
+                    <span>3<span class="bi bi-star-fill"></span>
+                    <meter min="1" max="100" value="20"></meter>
+                </li>
+                <li>
+                    <span>2<span class="bi bi-star-fill"></span>
+                    <meter min="1" max="100" low="50" high="80" value="100"></meter>
+                </li>
+                <li>
+                 <span>1<span class="bi bi-star-fill"></span>
+                 <meter min="1" max="100" low="60" high="80" value="100"></meter>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var catogories=["kids"];
+        function load(){
+            catogories.push("fashion");
+            catogories.unshift("all");
+            catogories.splice("1","0","men","women");
+            catogories.map(function(value){
+                var li=document.createElement("li");
+                li.innerHTML=value;
+                document.querySelector("ol").appendChild(li);
+
+                var option=document.createElement("option");
+                option.innerHTML=value;
+                document.querySelector("select").appendChild(option);
+
+                var ull=document.createElement("ul");
+                var label=document.createElement("label");
+                var input=document.createElement("input");
+                input.type="checkbox";
+                input.value=value;
+                label.innerHTML=value;
+                ull.appendChild(input);
+                ull.appendChild(label);
+                document.querySelector("ul").appendChild(ull);
+
+                var tr=document.createElement("tr");
+                var td=document.createElement("td");
+                td.innerHTML=value;
+                tr.appendChild(td);
+                document.querySelector("tbody").appendChild(tr);
+            })
+        }
+    </script>
+</head>
+<body>
+    <button onclick="load()">Load Click</button>
+    <ol></ol>
+    <select></select>
+    <ul></ul>
+    <table border="1" width="200">
+        <thead>
+            <tr>
+                <th>Catoegories</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+</html>

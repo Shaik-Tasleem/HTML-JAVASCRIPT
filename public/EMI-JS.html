@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        function amountchange(){
+            document.getElementById("txtamount").value=document.getElementById("amount").value;
+        }
+        function intrestchanged(){
+            document.getElementById("txtinterest").value=document.getElementById("rate").value;
+        }
+        function yearchange(){
+            document.getElementById("txtyear").value=document.getElementById("years").value;
+        }
+        function cal(){
+            var p=document.getElementById("txtamount").value;
+            var r=document.getElementById("txtinterest").value;
+            var n=document.getElementById("txtyear").value;
+            var EMI = p * r * Math.pow(1+r,n)/Math.pow(1+r,n)-1;
+            document.getElementById("para").innerHTML=`your monthly installment is <b class="text-primary">&#8377; ${Math.round(EMI)}</b> for ${n} years`;
+        }
+    </script>
+</head>
+<body class="bg-dark">
+    <h2 class="text-white mt-1 text-center">EMI Calculator</h2>
+    <div class=" m-3 p-3 bg-white text-dark ">
+        <div class="row">
+            <div class="col form-control">
+                Enter amount&#8377;<input type="text" id="txtamount">
+            </div>
+            <div class="col form-control">
+                for interest<input type="number" min="10.32" max="18.32" id="txtinterest">
+            </div>
+            <div class="col form-control" >
+                year<input type="text" id="txtyear">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="range" id="amount" class="form-range" min="1000" max="10000000" onchange="amountchange()">
+            </div>
+            <div class="col">
+                <input type="range"  id="rate" class="form-range" min="10.32" max="18.32" onchange="intrestchanged()">
+            </div>
+            <div class="col">
+                <input type="range" id="years" class="form-range" min="1" max="10" onchange="yearchange()">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <span class="float-start">&#8377;1000</span>
+                <span class="float-end">&#8377;100000</span>
+            </div>
+            <div class="col">
+                <span class="float-start">10.32%</span>
+                <span class="float-end">18.32%</span>
+            </div>
+            <div class="col">
+                <span class="float-start">1</span>
+                <span class="float-end">10</span>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col text-end mt-4">
+                <button class="btn btn-primary" onclick="cal()">Calculate</button>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <p id="para" class="text-center"></p>
+        </div>
+    </div>
+</body>
+</html>

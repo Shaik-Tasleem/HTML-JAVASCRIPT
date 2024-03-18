@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        function order(){
+            document.getElementById("lblname").innerHTML=document.getElementById("txtName").value;
+            document.getElementById("lblmobile").innerHTML=document.getElementById("txtMobile").value;
+            var meal="";
+            var mealCost=0;
+            var optburger=document.getElementById("optburger");
+            var optroller=document.getElementById("optroller");
+            if(optburger.checked){
+                meal+=optburger.value+"<br>";
+                mealCost=120;
+                document.getElementById("imgMeal").src="../public/images/omgburger.PNG";
+            }
+            if(optroller.checked){
+                meal+=optroller.value+"<br>";
+                mealCost+=180;
+                document.getElementById("imgMeal").src="../public/images/Roller.PNG";
+            }
+            var addname="";
+            var addCost=0;
+            var optpopcorn=document.getElementById("optpopcorn");
+            var opt7up=document.getElementById("opt7up");
+            if(optpopcorn.checked){
+                addname+=optpopcorn.value+"<br>";
+                addCost=110;
+                mealCost+=addCost;
+            }
+            if(opt7up.checked){
+                addname+=opt7up.value+"<br>";
+                addCost=200;
+                mealCost+=addCost;
+            }
+            document.getElementById("lblmeal").innerHTML=meal;
+            document.getElementById("lbladdons").innerHTML=addname;
+            document.getElementById("lbltotal").innerHTML=`your total cost &#8377; ${mealCost}`.bold().fontcolor('red');
+        }
+    </script>
+
+</head>
+<body >
+    <marquee scrollamount="25">
+        <h2 class=" w-50 mt-2 fw-bold text-center text-white bg-info">Welcome to KFC booking ! Enjoy your meals</h2>
+    </marquee>
+    <img  src="../public/images/kfctop.PNG" width="100%" height="200">
+    <section>
+        <div class="accordion" id="kfc">
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <button class="btn btn-danger text-center w-100" data-bs-toggle="collapse" data-bs-target="#customer">Customer Details</button>
+                </div>
+                <div class="accordion-collapse collapse" id="customer" data-bs-parent="#kfc">
+                    <div class="accordion-body bg-danger mt-2 text-white">
+                        <dl>
+                            <dt>Customer Name</dt>
+                            <dd><input type="text" id="txtName" class="form-control"></dd>
+                            <dt>Mobile Number</dt>
+                            <dd><input type="text" id="txtMobile" class="form-control"></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header">
+                    <button class="btn btn-danger w-100" data-bs-target="#meals" data-bs-toggle="collapse">Selct your meal</button>
+                </div>
+                <div class="accordion-collapse collapse" id="meals" data-bs-parent="#kfc">
+                    <div class="accordion-body bg-danger mt-2 w-100">
+                        <div class="row text-center">
+                            <div class="col text-center">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="../public/images/omgburger.PNG" width="150">
+                                    </div>
+                                    <div class="card-body">
+                                        <h2>
+                                            <input type="checkbox" class="form-check-input" name="omgburger" id="optburger" value="burger"><label>&#8377;120</label>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col text-center">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <img src="../public/images/Roller.PNG" width="150">
+                                    </div>
+                                    <div class="card-body">
+                                        <h2>
+                                            <input type="checkbox" class="form-check-input" id="optroller" name="roller" value="roller"><label>&#8377;180</label>
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-collapse">
+                    <div class="accordion-header">
+                        <button class="btn btn-danger w-100" data-bs-target="#addon" data-bs-toggle="collapse">Select Add-on's</button>
+                    </div>
+                    <div class="accordion-collapse collapse" id="addon" data-bs-parent="#kfc">
+                        <div class="accordion-body bg-danger mt-2">
+                            <div class="row text-center">
+                                <div class="col text-center">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <img src="../public/images/Chicken-popcorn.PNG" width="150" >
+                                        </div>
+                                        <div class="card-body">
+                                            <h2>Chicken-popcorn</h2>
+                                            <input type="checkbox" class="form-check-input" name="addon" id="optpopcorn" value="corn"><label>&#8377;110</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col text-center">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <img src="../public/images/7up-boxmeal.PNG" width="150" >
+                                        </div>
+                                        <div class="card-body">
+                                            <h2>7up-box meal</h2>
+                                            <input type="checkbox" class="form-check-input" name="addon" id="opt7up" value="7up-box"><label>&#8377;200</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-danger w-100" data-bs-target="#summary" data-bs-toggle="modal" onclick="order()">Place Order</button>
+                <div class="modal fade  w-100" id="summary">
+                    <div class="modal-dialog align-content-center">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2>Your order details</h2>
+                                <button class="btn-close text-end" data-bs-dismiss="modal"></button>
+                        
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <dl>
+                                            <dt>Username</dt>
+                                            <dd id="lblname"></dd>
+                                            <dt>Mobile Number</dt>
+                                            <dd id="lblmobile"></dd>
+                                            <dt>Your meal</dt>
+                                            <dd id="lblmeal"></dd>
+                                            <dt>addons</dt>
+                                            <dd id="lbladdons"></dd>
+                                            <dt>Total</dt>
+                                            <dd id="lbltotal"></dd>
+                                        </dl>
+                                    </div>
+                                    <div class="col">
+                                        <img id="imgMeal" width="200" height="200">
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

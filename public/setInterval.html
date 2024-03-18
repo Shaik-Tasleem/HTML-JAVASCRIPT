@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script>
+        var count=0;
+        function loading(){
+            count++;
+            document.getElementById("status").innerHTML=`${count} % complted`;
+            if(count==100){
+                document.getElementById("process").style.display="none";
+                document.getElementById("pic").style.display="block";
+            }
+        }
+        function loadcontainer(){
+            document.getElementById("btnContainer").style.display="none";
+            document.getElementById("process").style.display="block";
+            setInterval(loading,200);
+        }
+    </script>
+</head>
+<body class="container-fluid d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div>
+        <div id="btnContainer">
+            <button class="btn btn-primary text-dark" onclick="loadcontainer()">Load Image</button>
+        </div>
+        <div id="process" style="display: none;" class="text-center">
+            <div class="spinner-border text-danger"></div>
+            <div id="status"></div>
+        </div>
+        <div id="imgprocess" style="display: none;">
+            <img id="pic" src="../public/images/download (1).jpg" width="300" height="300">
+        </div>
+    </div>
+</body>
+</html>
